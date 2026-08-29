@@ -1,0 +1,49 @@
+name: Actualizare curs aur
+
+on:
+  schedule:
+    # Rulează zilnic la 06:00 UTC (~08:00-09:00 ora României, în funcție de ora de vară/iarnă)
+    - cron: '0 6 * * *'
+  workflow_dispatch: {}   # permite și rulare manuală din tab-ul "Actions" de pe GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  update-price:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonează repository-ul
+        uses: actions/checkout@v4
+
+      - name: Ia prețul aurului de la GoldAPI.io
+        env:
+          GOLDAPI_KEY: ${{ secrets.GOLDAPI_KEY }}
+        run: |
+          set -e
+          response=$(curl -s -H "x-access-token: $GOLDAPI_KEY" -H "Content-Type: application/json" https://www.goldapi.io/api/XAU/RON)
+
+          echo "Răspuns API: $response"
+
+          curs=$(echo "$response" | python3 -c "import sys, json; d = json.load(sys.stdin); print(d['price_gram_24k'])")
+          data_ora=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
+
+          cat > curs-aur.json << EOF
+          {
+            "curs": $curs,
+            "moneda": "RON",
+            "unitate": "lei / gram, aur 999 (24K)",
+            "actualizat": "$data_ora",
+            "sursa": "GoldAPI.io (preț spot piață internațională, convertit în RON)"
+          }
+          EOF
+
+          cat curs-aur.json
+
+      - name: Salvează fișierul în repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add curs-aur.json
+          git diff --quiet --cached || git commit -m "Actualizare automată curs aur $(date -u '+%Y-%m-%d')"
+          git push

@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amanet Hapofi Nord — Ploiești</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1b18;
+    --paper:#efe7d8;
+    --paper-dim:#e6dcc7;
+    --vault:#1f3a2e;
+    --vault-dark:#152a21;
+    --gold:#b8893a;
+    --gold-bright:#d4a94c;
+    --rust:#a3402a;
+    --line: rgba(28,27,24,0.16);
+    --line-strong: rgba(28,27,24,0.32);
+    --paper-line: rgba(239,231,216,0.22);
+    --radius: 2px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg,iframe{ max-width:100%; }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    margin:0;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  a{ color:inherit; }
+
+  :focus-visible{
+    outline:2px solid var(--rust);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  @media (max-width:480px){
+    .wrap{ padding:0 18px; }
+    section{ padding:52px 0; }
+    section.tight{ padding:40px 0; }
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:currentColor;
+    display:inline-block;
+  }
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 0;
+    gap:16px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .brand-mark{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1.5px solid var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:18px;
+    flex-shrink:0;
+  }
+  .brand-text{ line-height:1.1; }
+  .brand-text .name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:17px;
+  }
+  .brand-text .loc{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    opacity:0.65;
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    gap:28px;
+  }
+  nav a{
+    text-decoration:none;
+    font-size:14.5px;
+    font-weight:500;
+    color:var(--ink);
+    opacity:0.75;
+    transition:opacity .15s ease;
+  }
+  nav a:hover{ opacity:1; }
+  .nav-links{ display:flex; gap:24px; }
+  .call-btn{
+    background:var(--vault);
+    color:var(--paper);
+    padding:10px 18px;
+    border-radius:var(--radius);
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:background .15s ease;
+  }
+  .call-btn:hover{ background:var(--vault-dark); }
+
+  @media (max-width:860px){
+    .nav-links{ display:none; }
+  }
+  @media (max-width:420px){
+    .header-inner{ flex-wrap:wrap; gap:10px; }
+    .brand-text .name{ font-size:15px; }
+    .call-btn{ padding:9px 14px; font-size:13px; }
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:64px 0 56px;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; gap:44px; }
+  }
+
+  .hero-copy{
+    animation: rise .7s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .hero h1{
+    font-size:clamp(34px, 5vw, 54px);
+    line-height:1.04;
+    margin:18px 0 20px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--vault);
+  }
+  .hero p.lead{
+    font-size:17px;
+    line-height:1.6;
+    max-width:46ch;
+    opacity:0.82;
+    margin-bottom:28px;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 22px;
+    border-radius:var(--radius);
+    font-size:14.5px;
+    font-weight:600;
+    text-decoration:none;
+    border:1.5px solid var(--ink);
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--rust); border-color:var(--rust); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+  }
+  .btn-ghost:hover{ transform:translateY(-2px); background:var(--ink); color:var(--paper); }
+
+  .hero-eyebrow-block{ margin-bottom:18px; }
+  .hero-eyebrow-block .eyebrow{ margin-bottom:0; }
+  .hero-eyebrow-sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--rust);
+    font-weight:600;
+    margin:6px 0 0 32px;
+  }
+
+  .hero-trust-line{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    font-size:13px;
+    font-family:'IBM Plex Mono', monospace;
+    opacity:0.7;
+  }
+  .hero-trust-line span{ display:flex; align-items:center; gap:6px; }
+  .dot{ width:6px; height:6px; border-radius:50%; background:var(--vault); display:inline-block; }
+
+  /* ===== Ticket (signature element) ===== */
+  .ticket-stage{
+    display:flex;
+    justify-content:center;
+    animation: rise .8s .1s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .ticket{
+    position:relative;
+    width:100%;
+    max-width:360px;
+    background:var(--vault);
+    color:var(--paper);
+    border-radius:6px;
+    padding:26px 26px 22px;
+    box-shadow: 0 18px 40px -14px rgba(15,25,20,0.45), 0 2px 0 rgba(0,0,0,0.15);
+    transform: rotate(2.2deg);
+    transition: transform .35s ease;
+  }
+  .ticket:hover{ transform: rotate(0deg) translateY(-4px); }
+  .ticket::before,
+  .ticket::after{
+    content:"";
+    position:absolute;
+    top:0; bottom:0;
+    width:16px;
+    background-image: radial-gradient(circle at center, var(--paper) 4px, transparent 4.2px);
+    background-size: 16px 20px;
+    background-repeat: repeat-y;
+    background-position: center;
+  }
+  .ticket::before{ left:-8px; }
+  .ticket::after{ right:-8px; }
+
+  @media (max-width:420px){
+    .ticket{ transform:none; max-width:100%; padding:22px 18px 18px; }
+    .ticket:hover{ transform:none; }
+    .ticket::before,.ticket::after{ display:none; }
+  }
+
+  .ticket-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    border-bottom:1px dashed var(--paper-line);
+    padding-bottom:14px;
+    margin-bottom:14px;
+  }
+  .ticket-head .t-name{
+    font-family:'Fraunces', serif;
+    font-size:19px;
+    font-weight:600;
+  }
+  .ticket-head .t-sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    opacity:0.65;
+    margin-top:4px;
+  }
+  .stamp{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    border:1.5px solid var(--gold-bright);
+    color:var(--gold-bright);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    transform:rotate(-12deg);
+    flex-shrink:0;
+    line-height:1.2;
+  }
+
+  .ticket-row{
+    display:flex;
+    justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    padding:7px 0;
+    border-bottom:1px solid var(--paper-line);
+  }
+  .ticket-row span:first-child{ opacity:0.6; }
+
+  .ticket-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px dashed var(--paper-line);
+  }
+  .ticket-total .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    opacity:0.7;
+  }
+  .ticket-total .value{
+    font-family:'Fraunces', serif;
+    font-size:28px;
+    color:var(--gold-bright);
+    font-weight:600;
+  }
+  .ticket-foot{
+    margin-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:0.05em;
+    opacity:0.5;
+    text-align:center;
+  }
+
+  /* ===== Trust bar ===== */
+  .trustbar{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .trustbar-inner{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+  }
+  .trustbar-item{
+    padding:26px 20px;
+    border-right:1px solid rgba(239,231,216,0.14);
+    text-align:center;
+  }
+  .trustbar-item:last-child{ border-right:none; }
+  .trustbar-item .num{
+    font-family:'Fraunces', serif;
+    font-size:26px;
+    color:var(--gold-bright);
+    font-weight:600;
+  }
+  .trustbar-item .cap{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    opacity:0.72;
+    margin-top:4px;
+  }
+  @media (max-width:760px){
+    .trustbar-inner{ grid-template-columns:repeat(2, 1fr); }
+    .trustbar-item:nth-child(2){ border-right:none; }
+    .trustbar-item{ border-bottom:1px solid rgba(239,231,216,0.14); }
+  }
+
+  /* ===== Section shell ===== */
+  section{ padding:76px 0; }
+  section.tight{ padding:56px 0; }
+  .sec-head{
+    max-width:640px;
+    margin-bottom:44px;
+  }
+  .sec-head h2{
+    font-size:clamp(26px, 3.4vw, 36px);
+    margin-top:14px;
+  }
+  .sec-head p{
+    font-size:15.5px;
+    opacity:0.75;
+    margin-top:12px;
+    line-height:1.6;
+  }
+
+  /* ===== Services ===== */
+  .services{
+    background:var(--paper-dim);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--line-strong);
+    border:1px solid var(--line-strong);
+  }
+  @media (max-width:560px){ .service-grid{ grid-template-columns:1fr; } }
+
+  .service-card{
+    background:var(--paper-dim);
+    padding:30px 26px;
+    transition: background .18s ease;
+  }
+  .service-card:hover{ background:var(--paper); }
+  .service-icon{
+    width:38px; height:38px;
+    margin-bottom:18px;
+    color:var(--vault);
+  }
+  .service-card h3{
+    font-size:18px;
+    margin-bottom:8px;
+  }
+  .service-card p{
+    font-size:14px;
+    line-height:1.55;
+    opacity:0.72;
+    margin:0;
+  }
+
+  /* ===== How it works ===== */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:36px;
+    counter-reset: step;
+  }
+  @media (max-width:820px){ .steps{ grid-template-columns:1fr; gap:28px; } }
+  .step{
+    position:relative;
+    padding-top:8px;
+    border-top:2px solid var(--ink);
+  }
+  .step .step-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--rust);
+    font-weight:600;
+    margin-bottom:14px;
+    display:block;
+  }
+  .step h3{
+    font-size:19px;
+    margin-bottom:10px;
+  }
+  .step p{
+    font-size:14.5px;
+    line-height:1.6;
+    opacity:0.75;
+    margin:0;
+  }
+
+  /* ===== Rates ===== */
+  .rates{
+    background:var(--vault);
+    color:var(--paper);
+  }
+  .rates .sec-head p{ opacity:0.75; color:var(--paper); }
+  .rates .eyebrow{ color:var(--gold-bright); }
+  .rate-table-wrap{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .rate-table{
+    width:100%;
+    min-width:480px;
+    border-collapse:collapse;
+    font-size:14.5px;
+  }
+  .rate-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:12px 16px;
+    border-bottom:1px solid rgba(239,231,216,0.3);
+    opacity:0.7;
+    font-weight:500;
+  }
+  .rate-table td{
+    padding:16px;
+    border-bottom:1px solid rgba(239,231,216,0.14);
+    vertical-align:top;
+  }
+  .rate-table td.val{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--gold-bright);
+    white-space:nowrap;
+    font-weight:600;
+  }
+  .rate-note{
+    margin-top:18px;
+    font-size:12.5px;
+    opacity:0.6;
+    line-height:1.6;
+    max-width:60ch;
+  }
+
+  /* ===== Gold calculator ===== */
+  .calc-card{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:var(--radius);
+    padding:38px 34px;
+    margin-top:52px;
+    box-shadow:0 22px 48px rgba(0,0,0,0.32);
+  }
+  .calc-head .eyebrow{ color:var(--rust); }
+  .calc-head h3{
+    font-family:'Fraunces', serif;
+    font-size:clamp(20px, 2.4vw, 25px);
+    font-weight:600;
+    margin:10px 0 8px;
+    color:var(--ink);
+  }
+  .calc-head p{
+    font-size:14px;
+    line-height:1.6;
+    opacity:0.72;
+    max-width:62ch;
+    margin:0;
+  }
+  .calc-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px 24px;
+    margin:28px 0 8px;
+  }
+  .calc-field{ display:flex; flex-direction:column; }
+  .calc-field-wide{ grid-column:1/-1; }
+  .calc-field label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    opacity:0.6;
+    margin-bottom:8px;
+  }
+  .calc-field label span{ color:var(--rust); font-weight:600; }
+  .calc-field input[type="number"],
+  .calc-field select{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:15px;
+    padding:11px 13px;
+    background:var(--paper);
+    border:1.5px solid var(--line-strong);
+    border-radius:var(--radius);
+    color:var(--ink);
+  }
+  .calc-field input[type="number"]:focus,
+  .calc-field select:focus{ border-color:var(--vault); outline:none; }
+  .calc-field input[type="range"]{
+    accent-color:var(--vault);
+    width:100%;
+    margin-top:6px;
+  }
+  .calc-note-inline{
+    font-size:11.5px;
+    opacity:0.55;
+    margin-top:6px;
+  }
+  .calc-actions{ margin-top:8px; }
+  .calc-result{
+    margin-top:28px;
+    border-top:1px solid var(--line);
+    padding-top:22px;
+    display:flex;
+    flex-direction:column;
+    gap:13px;
+  }
+  .calc-result-row{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    font-size:14.5px;
+  }
+  .calc-result-row span:first-child{ opacity:0.65; }
+  .calc-result-row .r-strong{ font-weight:700; color:var(--vault); font-size:16px; }
+  .calc-result-row.r-total{
+    border-top:1px dashed var(--line-strong);
+    padding-top:14px;
+    margin-top:2px;
+    font-weight:700;
+  }
+  .calc-result-row.r-total span:first-child{ opacity:0.8; }
+  .calc-result-row.r-total span:last-child{ color:var(--rust); font-size:18px; }
+  .calc-disclaimer{
+    margin-top:20px;
+    font-size:12px;
+    opacity:0.55;
+    line-height:1.55;
+  }
+  @media (max-width:560px){
+    .calc-card{ padding:28px 20px; }
+    .calc-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ===== Security ===== */
+  .security-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:52px;
+    align-items:start;
+  }
+  @media (max-width:860px){ .security-grid{ grid-template-columns:1fr; gap:36px; } }
+  .security-list{ list-style:none; margin:0; padding:0; }
+  .security-list li{
+    display:flex;
+    gap:16px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .security-list li:first-child{ border-top:1px solid var(--line); }
+  .security-list .mark{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--rust);
+    flex-shrink:0;
+    padding-top:2px;
+  }
+  .security-list h4{
+    font-family:'Fraunces', serif;
+    font-size:16px;
+    font-weight:600;
+    margin:0 0 5px;
+  }
+  .security-list p{
+    font-size:13.5px;
+    opacity:0.72;
+    margin:0;
+    line-height:1.55;
+  }
+
+  .legal-card{
+    background:var(--paper-dim);
+    border:1px solid var(--line-strong);
+    padding:30px 28px;
+  }
+  .legal-card h3{ font-size:18px; margin-bottom:16px; }
+  .legal-card dl{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:9px 16px;
+    margin:0 0 20px;
+    font-size:13.5px;
+  }
+  .legal-card dt{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    opacity:0.55;
+    padding-top:1px;
+  }
+  .legal-card dd{ margin:0; }
+  .legal-card .note{
+    font-size:12.5px;
+    line-height:1.6;
+    opacity:0.68;
+    border-top:1px solid var(--line);
+    padding-top:16px;
+  }
+
+  /* ===== Testimonials ===== */
+  .testi-strip{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line-strong);
+    border:1px solid var(--line-strong);
+  }
+  @media (max-width:820px){ .testi-strip{ grid-template-columns:1fr; } }
+  .testi{
+    background:var(--paper);
+    padding:28px 26px;
+  }
+  .testi p{
+    font-size:14.5px;
+    line-height:1.6;
+    margin:0 0 16px;
+  }
+  .testi .who{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    opacity:0.6;
+  }
+  .stars{ color:var(--gold); font-size:13px; margin-bottom:10px; letter-spacing:2px; }
+
+  /* ===== Contact ===== */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:52px;
+  }
+  @media (max-width:900px){ .contact-grid{ grid-template-columns:1fr; } }
+  .contact-list{ list-style:none; padding:0; margin:0 0 28px; }
+  .contact-list li{
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    font-size:14.5px;
+  }
+  .contact-list li span:first-child{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    opacity:0.55;
+    flex-shrink:0;
+  }
+  .contact-list li{ align-items:flex-start; }
+  .contact-list li .value-text{ text-align:right; }
+  .program-lines{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    text-align:right;
+  }
+  .program-lines .program-row{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    white-space:nowrap;
+  }
+  .program-lines .program-row .p-days{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.03em;
+    opacity:0.6;
+    min-width:118px;
+    text-align:left;
+  }
+  @media (max-width:480px){
+    .program-lines .program-row{ white-space:normal; }
+    .program-lines .program-row .p-days{ min-width:0; }
+  }
+  .locations-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    margin-bottom:28px;
+  }
+  @media (max-width:760px){
+    .locations-grid{ grid-template-columns:1fr; gap:8px; }
+  }
+  .location-card h3{
+    font-size:18px;
+    margin-bottom:6px;
+    padding-bottom:14px;
+    border-bottom:2px solid var(--ink);
+  }
+  .location-card .contact-list{ margin-bottom:0; }
+  .location-card .contact-list li:last-child{ border-bottom:none; }
+  .map-frame{
+    border:1px solid var(--line-strong);
+    width:100%;
+    height:340px;
+    filter: sepia(8%) saturate(90%);
+  }
+  .map-frame-wide{
+    display:block;
+    height:420px;
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
+  }
+  @media (max-width:600px){
+    .map-frame-wide{ height:300px; }
+  }
+  .placeholder-note{
+    margin-top:14px;
+    font-size:12.5px;
+    opacity:0.6;
+    line-height:1.55;
+  }
+
+  /* ===== Contact form ===== */
+  .contact-form{
+    max-width:640px;
+  }
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  @media (max-width:560px){
+    .form-row{ grid-template-columns:1fr; }
+  }
+  .form-field{
+    margin-bottom:20px;
+    display:flex;
+    flex-direction:column;
+  }
+  .form-field label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    opacity:0.6;
+    margin-bottom:8px;
+  }
+  .form-field input,
+  .form-field textarea{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:15px;
+    padding:12px 14px;
+    background:var(--paper);
+    border:1.5px solid var(--line-strong);
+    border-radius:var(--radius);
+    color:var(--ink);
+    resize:vertical;
+  }
+  .form-field input:focus,
+  .form-field textarea:focus{
+    border-color:var(--vault);
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    background:var(--ink);
+    color:var(--paper);
+    padding:44px 0 28px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:24px;
+    padding-bottom:28px;
+    border-bottom:1px solid rgba(239,231,216,0.16);
+    margin-bottom:20px;
+  }
+  .footer-brand .name{ font-family:'Fraunces', serif; font-size:19px; font-weight:600; }
+  .footer-brand .loc{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; opacity:0.6; margin-top:6px; }
+  .footer-links{ display:flex; gap:28px; flex-wrap:wrap; }
+  .footer-links a{ text-decoration:none; font-size:13.5px; opacity:0.75; }
+  .footer-links a:hover{ opacity:1; }
+  .footer-legal{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    line-height:1.8;
+    opacity:0.5;
+    max-width:74ch;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a href="#" class="brand">
+      <span class="brand-mark">H</span>
+      <span class="brand-text">
+        <span class="name">Amanet Hapofi Nord</span><br>
+        <span class="loc">2 locații · Ploiești</span>
+      </span>
+    </a>
+    <nav>
+      <div class="nav-links">
+        <a href="#servicii">Servicii</a>
+        <a href="#cum-functioneaza">Cum funcționează</a>
+        <a href="#tarife">Tarife</a>
+        <a href="#siguranta">Siguranță</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="tel:+40745300610" class="call-btn">Sună acum</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow-block">
+        <p class="eyebrow">Amanet de aur și bijuterii de aur</p>
+        <p class="hero-eyebrow-sub">2 locații în Ploiești</p>
+      </div>
+      <h1>Bani pe loc,<br><em>evaluare corectă,</em><br>fără bătăi de cap.</h1>
+      <p class="lead">Din Complexul Mare (Șoseaua Nordului) și din Mihai Bravu (Aleea Chimiei nr. 3), oferim împrumuturi rapide, garantate cu aur și bijuterii de aur. Evaluare pe loc, comisioane clare, biletul de amanet îl primiți în mână în câteva minute.</p>
+      <div class="hero-ctas">
+        <a href="tel:+40745300610" class="btn btn-primary">Sună pentru evaluare</a>
+        <a href="#tarife" class="btn btn-ghost">Vezi tarifele</a>
+      </div>
+      <div class="hero-trust-line">
+        <span><i class="dot"></i>Activi din 2004</span>
+        <span><i class="dot"></i>Specializați în aur și bijuterii de aur</span>
+      </div>
+    </div>
+
+    <div class="ticket-stage">
+      <div class="ticket">
+        <div class="ticket-head">
+          <div>
+            <div class="t-name">Bilet de amanet</div>
+            <div class="t-sub">Hapofi Nord · Ploiești</div>
+          </div>
+          <div class="stamp">EVALUAT<br>PE LOC</div>
+        </div>
+        <div class="ticket-row"><span>Serie / Nr.</span><span>HPF-0000000</span></div>
+        <div class="ticket-row"><span>Obiect</span><span>Bijuterie aur, 14K</span></div>
+        <div class="ticket-row"><span>Greutate</span><span>— g</span></div>
+        <div class="ticket-row"><span>Termen</span><span>30 zile</span></div>
+        <div class="ticket-total">
+          <span class="label">Sumă acordată</span>
+          <span class="value">— lei</span>
+        </div>
+        <div class="ticket-foot">EXEMPLU ORIENTATIV · SUMA REALĂ SE STABILEȘTE LA EVALUARE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trustbar">
+  <div class="wrap trustbar-inner">
+    <div class="trustbar-item">
+      <div class="num">2004</div>
+      <div class="cap">An înființare</div>
+    </div>
+    <div class="trustbar-item">
+      <div class="num">Exclusiv</div>
+      <div class="cap">Aur &amp; bijuterii de aur</div>
+    </div>
+    <div class="trustbar-item">
+      <div class="num">~10 min</div>
+      <div class="cap">Evaluare pe loc</div>
+    </div>
+    <div class="trustbar-item">
+      <div class="num">100%</div>
+      <div class="cap">Comisioane transparente</div>
+    </div>
+  </div>
+</div>
+
+<section id="servicii" class="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Ce acceptăm</p>
+      <h2>Garanții pe care le evaluăm zilnic</h2>
+      <p>Suntem specializați exclusiv în aur și bijuterii de aur. Fiecare obiect este evaluat pe loc, în fața dumneavoastră, de personal instruit. Nu percepem taxă pentru evaluare.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="service-grid">
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></svg>
+        <h3>Bijuterii de aur</h3>
+        <p>Inele, lănțișoare, brățări, cercei din aur — evaluate după titlu (14K, 18K etc.) și greutate, cântărite în fața dumneavoastră.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12l6 6L20 6"/></svg>
+        <h3>Monede &amp; lingouri de aur</h3>
+        <p>Monede și lingouri de aur, evaluate după titlu și greutate, cu ofertă pe loc.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cum-functioneaza">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Procesul</p>
+      <h2>Trei pași simpli, până primiți banii în mână</h2>
+      <p>Fără dosare complicate, fără așteptare. Aveți nevoie doar de actul de identitate și de obiectul pe care doriți să-l amanetați.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <h3>Aduceți obiectul</h3>
+        <p>Veniți la oricare dintre sediile noastre din Ploiești cu obiectul și cartea de identitate. Nu este nevoie de programare.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h3>Evaluare gratuită, pe loc</h3>
+        <p>Un evaluator stabilește valoarea în fața dumneavoastră și vă propune o sumă și un comision, fără taxe ascunse.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h3>Primiți banii și biletul</h3>
+        <p>Dacă sunteți de acord, semnați contractul, primiți suma pe loc și biletul de amanet care vă permite recuperarea obiectului.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tarife" class="rates">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Transparență</p>
+      <h2>Cum se calculează suma și comisionul</h2>
+      <p>Valorile de mai jos sunt orientative — comisionul final se stabilește la evaluare, în funcție de tipul obiectului, starea lui și termenul ales, și este menționat clar atât pe bilet, cât și în contract.</p>
+    </div>
+    <div class="rate-table-wrap">
+    <table class="rate-table">
+      <thead>
+        <tr>
+          <th>Categorie</th>
+          <th>Criteriu de evaluare</th>
+          <th>Termen orientativ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bijuterii de aur</td>
+          <td class="val">Titlu + greutate</td>
+          <td>15–30 zile, prelungibil</td>
+        </tr>
+        <tr>
+          <td>Monede &amp; lingouri de aur</td>
+          <td class="val">Titlu + greutate</td>
+          <td>15–30 zile, prelungibil</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="rate-note">Contractul de amanet respectă prevederile legale în vigoare privind protecția consumatorilor. Orice comision, dobândă sau penalizare vă este comunicată în scris, înainte de semnare — nu percepem costuri neanunțate.</p>
+
+    <div class="calc-card">
+      <div class="calc-head">
+        <p class="eyebrow">Calculator orientativ</p>
+        <h3>Cât puteți obține pe bijuteria dumneavoastră</h3>
+        <p>Calculul se face pe baza cursului aurului BNR, a titlului și greutății obiectului, a stării/uzurii lui și a perioadei de împrumut alese. Rezultatul este orientativ — suma și comisionul finale se stabilesc la evaluarea în persoană, în una dintre locațiile noastre.</p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label for="c-curs">Curs aur BNR azi (lei/gram, aur 999)</label>
+          <input type="number" id="c-curs" inputmode="decimal" min="0" step="0.01" value="350">
+          <span class="calc-note-inline" id="c-curs-note">Se actualizează automat, o dată pe zi. Puteți ajusta manual dacă e nevoie.</span>
+        </div>
+        <div class="calc-field">
+          <label for="c-titlu">Titlu / puritate aur</label>
+          <select id="c-titlu">
+            <option value="0.375">9K (375)</option>
+            <option value="0.585" selected>14K (585)</option>
+            <option value="0.750">18K (750)</option>
+            <option value="0.900">22K (900)</option>
+            <option value="0.999">24K / lingou (999)</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label for="c-greutate">Greutate obiect (grame)</label>
+          <input type="number" id="c-greutate" inputmode="decimal" min="0" step="0.1" value="5">
+        </div>
+        <div class="calc-field">
+          <label for="c-stare">Stare / uzură obiect</label>
+          <select id="c-stare">
+            <option value="0.95">Foarte bună — uzură minimă</option>
+            <option value="0.85" selected>Bună — uzură normală</option>
+            <option value="0.70">Uzată — zgârieturi, deformări</option>
+          </select>
+        </div>
+        <div class="calc-field calc-field-wide">
+          <label for="c-zile">Perioadă împrumut — <span id="c-zile-val">30</span> zile</label>
+          <input type="range" id="c-zile" min="5" max="90" step="5" value="30">
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <div class="calc-result-row">
+          <span>Valoare conținut aur pur</span>
+          <span id="r-aur">—</span>
+        </div>
+        <div class="calc-result-row">
+          <span>Sumă orientativă acordată</span>
+          <span id="r-suma" class="r-strong">—</span>
+        </div>
+        <div class="calc-result-row">
+          <span>Comision pentru perioada aleasă</span>
+          <span id="r-comision">—</span>
+        </div>
+        <div class="calc-result-row r-total">
+          <span>Total de restituit la ridicare</span>
+          <span id="r-total">—</span>
+        </div>
+      </div>
+
+      <p class="calc-disclaimer">* Calcul orientativ, fără valoare contractuală. Suma acordată depinde de evaluarea directă a obiectului de către evaluatorul nostru, iar comisionul final este comunicat clar înainte de semnarea contractului — fără costuri ascunse.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="siguranta">
+  <div class="wrap" style="max-width:720px;">
+    <div>
+      <div class="sec-head" style="margin-bottom:8px;">
+        <p class="eyebrow">Siguranță &amp; discreție</p>
+        <h2>Bunurile dumneavoastră, în siguranță</h2>
+      </div>
+      <ul class="security-list">
+        <li>
+          <span class="mark">01</span>
+          <div>
+            <h4>Seif securizat</h4>
+            <p>Obiectele lăsate drept garanție sunt depozitate în seif, separat de fluxul zilnic al magazinului.</p>
+          </div>
+        </li>
+        <li>
+          <span class="mark">02</span>
+          <div>
+            <h4>Supraveghere video</h4>
+            <p>Spațiul este monitorizat video pe toată durata programului de lucru.</p>
+          </div>
+        </li>
+        <li>
+          <span class="mark">03</span>
+          <div>
+            <h4>Contract pe numele dumneavoastră</h4>
+            <p>Fiecare tranzacție este înregistrată pe baza actului de identitate al clientului, cu bilet nominal.</p>
+          </div>
+        </li>
+        <li>
+          <span class="mark">04</span>
+          <div>
+            <h4>Discreție</h4>
+            <p>Nu discutăm și nu afișăm public detaliile tranzacțiilor clienților.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="background:var(--paper-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Ce spun clienții</p>
+      <h2>Recenzii din cartier</h2>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="testi-strip">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p>Evaluare rapidă și corectă, mi-au explicat clar comisionul înainte să semnez.</p>
+        <div class="who">Client, zona Nord</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p>Personal amabil, obiectul mi-a fost restituit exact așa cum l-am lăsat.</p>
+        <div class="who">Client, Ploiești</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p>Am recuperat bijuteria fără probleme, la termenul din bilet.</p>
+        <div class="who">Client fidel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Vizitați-ne</p>
+      <h2>Două locații, în Ploiești</h2>
+      <p>Amanet Hapofi Nord are acum două puncte de lucru — aceeași casă de amanet, aceleași servicii de aur și bijuterii de aur.</p>
+    </div>
+    <div class="locations-grid">
+      <div class="location-card">
+        <h3>Complexul Mare</h3>
+        <ul class="contact-list">
+          <li><span>Adresă</span><span class="value-text">Complexul Mare, Șoseaua Nordului, Ploiești, Prahova</span></li>
+          <li><span>Telefon</span><span class="value-text">+40 745 300 610</span></li>
+          <li>
+            <span>Program</span>
+            <span class="program-lines">
+              <span class="program-row"><span class="p-days">Luni – Vineri</span><span>09:00 – 18:00</span></span>
+              <span class="program-row"><span class="p-days">Sâmbătă</span><span>Închis</span></span>
+              <span class="program-row"><span class="p-days">Duminică</span><span>Închis</span></span>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="location-card">
+        <h3>Mihai Bravu</h3>
+        <ul class="contact-list">
+          <li><span>Adresă</span><span class="value-text">Aleea Chimiei Nr. 3, Cartier Mihai Bravu, Ploiești, Prahova</span></li>
+          <li><span>Telefon</span><span class="value-text">+40 745 300 610</span></li>
+          <li>
+            <span>Program</span>
+            <span class="program-lines">
+              <span class="program-row"><span class="p-days">Luni – Vineri</span><span>09:00 – 18:00</span></span>
+              <span class="program-row"><span class="p-days">Sâmbătă</span><span>Închis</span></span>
+              <span class="program-row"><span class="p-days">Duminică</span><span>Închis</span></span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <a href="tel:+40745300610" class="btn btn-primary">Sună pentru evaluare</a>
+  </div>
+</section>
+
+<section id="intrebari" class="tight" style="background:var(--paper-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Aveți o întrebare?</p>
+      <h2>Scrieți-ne, vă răspundem rapid</h2>
+      <p>Completați formularul de mai jos — mesajul ajunge direct la noi, fără să deschideți nicio altă aplicație.</p>
+    </div>
+    <form id="contact-form" class="contact-form" novalidate>
+      <input type="hidden" name="access_key" value="ÎNLOCUIEȘTE_CU_CHEIA_TA_WEB3FORMS">
+      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="f-name">Nume și prenume</label>
+          <input type="text" id="f-name" name="name" required placeholder="Ex: Ion Popescu">
+        </div>
+        <div class="form-field">
+          <label for="f-email">E-mail</label>
+          <input type="email" id="f-email" name="email" required placeholder="nume@exemplu.ro">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="f-message">Mesajul dumneavoastră</label>
+        <textarea id="f-message" name="message" rows="5" required placeholder="Spuneți-ne ce doriți să amanetați sau ce întrebare aveți..."></textarea>
+      </div>
+      <button type="submit" id="form-submit-btn" class="btn btn-primary" style="border:none; cursor:pointer;">Trimite întrebarea</button>
+      <p id="form-status" class="placeholder-note" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<section class="tight" style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:24px;">
+      <p class="eyebrow">Locații</p>
+      <h2>Ambele puncte de lucru, pe aceeași hartă</h2>
+    </div>
+  </div>
+  <div id="locations-map" class="map-frame map-frame-wide"></div>
+</section>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  (function(){
+    var locations = [
+      { name: 'Amanet Hapofi Nord — Complexul Mare', address: 'Complexul Mare, Șoseaua Nordului, Ploiești', lat: 44.9537495, lng: 26.001641 },
+      { name: 'Amanet Hapofi Nord — Mihai Bravu', address: 'Aleea Chimiei Nr. 3, Cartier Mihai Bravu, Ploiești', lat: 44.9389217, lng: 26.0465026 }
+    ];
+
+    var map = L.map('locations-map', { scrollWheelZoom: false });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19
+    }).addTo(map);
+
+    var bounds = [];
+    locations.forEach(function(loc){
+      L.marker([loc.lat, loc.lng]).addTo(map)
+        .bindPopup('<strong>' + loc.name + '</strong><br>' + loc.address);
+      bounds.push([loc.lat, loc.lng]);
+    });
+    map.fitBounds(bounds, { padding: [40, 40] });
+  })();
+</script>
+
+<script>
+  (function(){
+    var elCurs = document.getElementById('c-curs');
+    var elTitlu = document.getElementById('c-titlu');
+    var elGreutate = document.getElementById('c-greutate');
+    var elStare = document.getElementById('c-stare');
+    var elZile = document.getElementById('c-zile');
+    var elZileVal = document.getElementById('c-zile-val');
+
+    var rAur = document.getElementById('r-aur');
+    var rSuma = document.getElementById('r-suma');
+    var rComision = document.getElementById('r-comision');
+    var rTotal = document.getElementById('r-total');
+
+    function formatLei(n){
+      return n.toLocaleString('ro-RO', { maximumFractionDigits: 0 }) + ' lei';
+    }
+
+    // Comision orientativ, în funcție de numărul de zile ale împrumutului.
+    // Ajustați aceste praguri după politica reală a magazinului.
+    function comisionProcent(zile){
+      if(zile <= 15) return 0.08;
+      if(zile <= 30) return 0.12;
+      if(zile <= 45) return 0.16;
+      if(zile <= 60) return 0.20;
+      return 0.25;
+    }
+
+    function calculeaza(){
+      var curs = parseFloat(elCurs.value) || 0;
+      var titlu = parseFloat(elTitlu.value) || 0;
+      var greutate = parseFloat(elGreutate.value) || 0;
+      var stare = parseFloat(elStare.value) || 0;
+      var zile = parseInt(elZile.value, 10) || 0;
+
+      elZileVal.textContent = zile;
+
+      var gramajPur = greutate * titlu;
+      var valoareAur = gramajPur * curs;
+      var suma = valoareAur * stare;
+      var procent = comisionProcent(zile);
+      var comision = suma * procent;
+      var total = suma + comision;
+
+      rAur.textContent = formatLei(valoareAur);
+      rSuma.textContent = formatLei(suma);
+      rComision.textContent = formatLei(comision) + ' (' + Math.round(procent * 100) + '%)';
+      rTotal.textContent = formatLei(total);
+    }
+
+    [elCurs, elTitlu, elGreutate, elStare, elZile].forEach(function(el){
+      if(el){ el.addEventListener('input', calculeaza); el.addEventListener('change', calculeaza); }
+    });
+
+    calculeaza();
+
+    // Preia automat cursul aurului din curs-aur.json (actualizat zilnic prin GitHub Actions).
+    // Dacă fișierul lipsește sau nu poate fi citit, rămâne valoarea introdusă manual mai sus.
+    var noteEl = document.getElementById('c-curs-note');
+    fetch('curs-aur.json', { cache: 'no-store' })
+      .then(function(res){ if(!res.ok) throw new Error('no file'); return res.json(); })
+      .then(function(data){
+        if(data && data.curs){
+          elCurs.value = data.curs;
+          calculeaza();
+          if(noteEl && data.actualizat){
+            var d = new Date(data.actualizat);
+            var dataText = isNaN(d.getTime()) ? data.actualizat : d.toLocaleDateString('ro-RO');
+            noteEl.textContent = 'Curs actualizat automat la ' + dataText + '. Puteți ajusta manual dacă e nevoie.';
+          }
+        }
+      })
+      .catch(function(){
+        if(noteEl){ noteEl.textContent = 'Actualizați manual conform cursului BNR din ziua curentă.'; }
+      });
+  })();
+</script>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var form = e.target;
+    var name = document.getElementById('f-name').value.trim();
+    var email = document.getElementById('f-email').value.trim();
+    var message = document.getElementById('f-message').value.trim();
+    var status = document.getElementById('form-status');
+    var btn = document.getElementById('form-submit-btn');
+
+    if(!name || !email || !message){
+      status.textContent = 'Vă rugăm completați toate câmpurile.';
+      return;
+    }
+
+    btn.disabled = true;
+    status.textContent = 'Se trimite...';
+
+    var formData = new FormData(form);
+    formData.append('subject', 'Întrebare de pe site — ' + name);
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      btn.disabled = false;
+      if(data.success){
+        status.textContent = 'Mesajul a fost trimis. Vă răspundem în cel mai scurt timp.';
+        form.reset();
+      } else {
+        status.textContent = 'A apărut o eroare. Vă rugăm sunați-ne la +40 745 300 610.';
+      }
+    })
+    .catch(function(){
+      btn.disabled = false;
+      status.textContent = 'A apărut o eroare de conexiune. Vă rugăm sunați-ne la +40 745 300 610.';
+    });
+  });
+</script>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="name">Amanet Hapofi Nord</div>
+        <div class="loc">Complexul Mare &amp; Mihai Bravu · Ploiești</div>
+      </div>
+      <div class="footer-links">
+        <a href="#servicii">Servicii</a>
+        <a href="#cum-functioneaza">Cum funcționează</a>
+        <a href="#tarife">Tarife</a>
+        <a href="#siguranta">Siguranță</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <p class="footer-legal">
+      Amanet Hapofi Nord — Complexul Mare (Șoseaua Nordului) și Mihai Bravu (Aleea Chimiei nr. 3), Ploiești. Activitatea de amanetare se desfășoară cu respectarea legislației aplicabile privind protecția consumatorilor. Pentru sesizări: Autoritatea Națională pentru Protecția Consumatorilor (ANPC), www.anpc.ro. © 2026 Amanet Hapofi Nord.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
